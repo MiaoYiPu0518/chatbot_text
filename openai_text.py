@@ -1,12 +1,12 @@
 import sys
+import os
 import openai 
 from termcolor import colored, cprint
 
-openai.api_key = "sk-" # Input OpenAI API key here
-openai.proxy = "" 
+openai.api_key = os.getenv('OPENAI_API_KEY')
+openai.proxy = os.getenv('OPENAI_PROXY') 
 GPT4 = "gpt-4"
 messages = [] # chat history 
-
 sys_print = lambda x : cprint(x, "yellow") # Used to print system message
 
 def main():

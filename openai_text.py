@@ -3,7 +3,7 @@ import openai
 from termcolor import colored, cprint
 
 openai.api_key = "sk-" # Input OpenAI API key here
-openai.proxy = "http://204.40.130.129:3128"
+openai.proxy = ""
 GPT4 = "gpt-4"
 messages = []
 

@@ -19,14 +19,18 @@ def create_gui():
     root = tk.Tk()
     root.title("AI Chat")
 
-    text_widget = tk.Text(root, wrap=tk.WORD)
+    text_widget = tk.Text(root, wrap=tk.WORD, font=("Berkeley Mono", 10))
     text_widget.pack(expand=True, fill=tk.BOTH)
 
-    user_input_widget = tk.Text(root, wrap=tk.WORD, height=4)
-    user_input_widget.pack(fill=tk.X)
+    input_frame = tk.Frame(root)
+    input_frame.pack(fill=tk.X)
 
-    submit_button = tk.Button(root, text="Submit", command=lambda: on_submit(user_input_widget, text_widget))
-    submit_button.pack()
+    submit_button = tk.Button(input_frame, text="Submit", command=lambda: on_submit(user_input_widget, text_widget))
+    submit_button.pack(side=tk.RIGHT, fill=tk.BOTH)
+
+    user_input_widget = tk.Text(input_frame, wrap=tk.WORD, height=4, font=("Berkeley Mono", 10))
+    user_input_widget.pack(side=tk.LEFT, fill=tk.X, expand=True)
+
     root.mainloop()
 
 def stream_response(completion, text_widget):
@@ -41,7 +45,6 @@ def stream_response(completion, text_widget):
         full_response += content
 
     messages.append({"role": "assistant", "content": full_response})
-    print(messages)
 
 def on_submit(user_input_widget, text_widget):
     user_input = user_input_widget.get("1.0", tk.END).strip()
